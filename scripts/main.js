@@ -138,12 +138,6 @@ function render(pages, problemsPerRow) {
   pagesContainer.innerHTML = '';
   for (const page of pages) {
     const pageEl = el('section', 'page');
-    const header = el('div', 'page-header');
-    const nameLabel = el('div', 'label'); nameLabel.textContent = 'Name:';
-    const nameLine = el('div', 'line');
-    const dateLabel = el('div', 'label'); dateLabel.textContent = 'Date:';
-    const dateLine = el('div', 'line');
-    header.append(nameLabel, nameLine, dateLabel, dateLine);
     const grid = el('div', 'problems-grid');
     grid.style.gridTemplateColumns = `repeat(${problemsPerRow}, 1fr)`;
     for (const prob of page.problems) {
@@ -157,7 +151,7 @@ function render(pages, problemsPerRow) {
       probEl.append(vp);
       grid.append(probEl);
     }
-    pageEl.append(header, grid);
+    pageEl.append(grid);
     pagesContainer.append(pageEl);
   }
 }

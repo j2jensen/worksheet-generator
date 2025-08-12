@@ -86,14 +86,14 @@ body {
   grid-template-columns: auto 1fr;
   grid-template-rows: auto auto auto;
   column-gap: 8px;
-  row-gap: 4px;
+  row-gap: 2px; /* tighter gap so the line is close to the problem */
   align-items: end;
   font-size: 20px;
 }
 .vertical-problem .op { grid-column: 1; grid-row: 2; align-self: end; padding-right: 2px; }
 .vertical-problem .top { grid-column: 2; grid-row: 1; text-align: right; }
 .vertical-problem .bottom { grid-column: 2; grid-row: 2; text-align: right; }
-.vertical-problem .answer { grid-column: 1 / span 2; grid-row: 3; height: 28px; border-bottom: 1px solid #000; }
+.vertical-problem .answer { grid-column: 1 / span 2; grid-row: 3; height: 40px; border-top: 1px solid #000; }
 
 @media print {
   :root {
