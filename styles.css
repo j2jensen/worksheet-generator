@@ -1,0 +1,101 @@
+:root {
+  --page-width: 8.5in;
+  --page-height: 11in;
+  --page-margin: 0.5in;
+  --problem-gap: 12px;
+  --problem-font: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Noto Sans", "Liberation Sans", sans-serif;
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: var(--problem-font);
+  color: #000;
+  background: #fff;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 16px;
+  border-bottom: 1px solid #ddd;
+  position: sticky;
+  top: 0;
+  background: #fff;
+  z-index: 5;
+}
+.app-header h1 { font-size: 18px; margin: 0; }
+.header-actions { display: flex; gap: 8px; }
+
+.controls {
+  display: grid;
+  gap: 16px;
+  padding: 16px;
+}
+.controls fieldset { border: 1px solid #ccc; padding: 12px; }
+.controls legend { padding: 0 6px; }
+.field-row { display: flex; align-items: center; gap: 8px; margin-block: 6px; flex-wrap: wrap; }
+.subfieldset { margin-top: 8px; }
+.indent { padding-left: 24px; }
+.cfg-actions { margin-top: 8px; display: flex; gap: 8px; }
+
+.config { margin-top: 12px; }
+.config-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px 16px; }
+.group-label { font-weight: 600; margin-right: 8px; }
+
+.pages {
+  padding: 16px;
+  display: grid;
+  gap: 24px;
+}
+
+.page {
+  width: var(--page-width);
+  min-height: var(--page-height);
+  padding: var(--page-margin);
+  border: 1px solid #ddd;
+  background: #fff;
+  page-break-after: always;
+}
+
+.problems-grid {
+  display: grid;
+  grid-auto-rows: 1fr;
+  gap: var(--problem-gap);
+}
+
+.problem {
+  display: inline-block;
+  width: 100%;
+}
+
+.vertical-problem {
+  display: inline-grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto 1px auto;
+  column-gap: 6px;
+  row-gap: 2px;
+  align-items: end;
+  font-size: 18px;
+}
+.vertical-problem .op { grid-column: 1; grid-row: 1 / span 2; align-self: center; padding-right: 2px; }
+.vertical-problem .top { grid-column: 2; grid-row: 1; text-align: right; }
+.vertical-problem .bottom { grid-column: 2; grid-row: 2; text-align: right; }
+.vertical-problem .line { grid-column: 1 / span 2; grid-row: 3; height: 1px; background: #000; }
+.vertical-problem .answer { grid-column: 1 / span 2; grid-row: 4; height: 22px; border-bottom: 1px solid #000; }
+
+@media print {
+  :root {
+    --page-width: auto;
+    --page-height: auto;
+    --page-margin: 0.5in;
+  }
+  .app-header, .controls { display: none !important; }
+  .page { border: none; padding: var(--page-margin); break-after: page; }
+  body { background: #fff; }
+}
+
+

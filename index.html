@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Worksheet Generator – Multiplication</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <h1>Worksheet Generator – Multiplication</h1>
+      <div class="header-actions">
+        <button id="regenerateBtn" type="button">Regenerate</button>
+        <button id="printBtn" type="button">Print</button>
+      </div>
+    </header>
+
+    <form id="controls" class="controls" autocomplete="off">
+      <fieldset>
+        <legend>Global options</legend>
+        <div class="field-row">
+          <label for="problemsPerPage">Problems per page</label>
+          <input id="problemsPerPage" name="problemsPerPage" type="number" min="1" max="200" step="1" value="40" />
+        </div>
+        <div class="field-row">
+          <label for="problemsPerRow">Problems per row</label>
+          <input id="problemsPerRow" name="problemsPerRow" type="number" min="1" max="8" step="1" value="4" />
+        </div>
+
+        <fieldset class="subfieldset">
+          <legend>Randomness</legend>
+          <div class="field-row">
+            <label>
+              <input type="radio" name="randomMode" value="independent" checked />
+              Independent rolls
+            </label>
+          </div>
+          <div class="field-row">
+            <label>
+              <input type="radio" name="randomMode" value="deck" />
+              Exhaustive deck (no repeats until all pairs used)
+            </label>
+          </div>
+          <div class="field-row indent">
+            <label>
+              <input id="commDupes" type="checkbox" name="commutativeDuplicates" checked />
+              Treat commutative pairs as duplicates in deck mode
+            </label>
+          </div>
+        </fieldset>
+
+        <div class="field-row">
+          <label>
+            <input id="allowCommutativity" name="allowCommutativity" type="checkbox" />
+            Allow “vice versa” (commutativity for layout)
+          </label>
+        </div>
+      </fieldset>
+
+      <fieldset id="configsFieldset">
+        <legend>Configurations</legend>
+        <div id="configs"></div>
+        <div class="cfg-actions">
+          <button id="addConfigBtn" type="button">Add configuration</button>
+        </div>
+      </fieldset>
+    </form>
+
+    <main id="pages" class="pages" aria-live="polite"></main>
+
+    <template id="configTemplate">
+      <fieldset class="config">
+        <legend>Configuration</legend>
+        <div class="config-grid">
+          <div class="field-row">
+            <span class="group-label">First set</span>
+            <label for="leftFrom">From</label>
+            <input name="leftFrom" type="number" min="0" max="999" step="1" value="1" />
+            <label for="leftTo">To</label>
+            <input name="leftTo" type="number" min="0" max="999" step="1" value="9" />
+          </div>
+          <div class="field-row">
+            <span class="group-label">Second set</span>
+            <label for="rightFrom">From</label>
+            <input name="rightFrom" type="number" min="0" max="999" step="1" value="1" />
+            <label for="rightTo">To</label>
+            <input name="rightTo" type="number" min="0" max="999" step="1" value="10" />
+          </div>
+          <div class="field-row">
+            <label for="pagesCount">Pages</label>
+            <input name="pagesCount" type="number" min="1" max="50" step="1" value="1" />
+          </div>
+        </div>
+        <div class="cfg-actions">
+          <button class="removeConfigBtn" type="button" aria-label="Remove configuration">Remove</button>
+        </div>
+      </fieldset>
+    </template>
+
+    <script type="module" src="scripts/main.js"></script>
+  </body>
+  </html>
+
+
