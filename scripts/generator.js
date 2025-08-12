@@ -52,7 +52,8 @@ export function buildPairs(leftSet, rightSet, dedupeCommutative) {
         const key = `${a1}x${b1}`;
         if (seen.has(key)) continue;
         seen.add(key);
-        pairs.push([a1, b1]);
+        // Preserve orientation (left=a, right=b) while deduping by commutative key
+        pairs.push([a, b]);
       } else {
         pairs.push([a, b]);
       }
