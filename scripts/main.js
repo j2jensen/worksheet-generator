@@ -105,11 +105,11 @@ function el(tag, cls) {
 
 function readGlobalOptions() {
   const data = new FormData(form);
-  const problemsPerPage = Math.max(1, parseInt(data.get('problemsPerPage')) || 40);
-  const problemsPerRow = Math.max(1, parseInt(data.get('problemsPerRow')) || 4);
+  const problemsPerPage = Math.max(1, parseInt(data.get('problemsPerPage')) || 30);
+  const problemsPerRow = Math.max(1, parseInt(data.get('problemsPerRow')) || 5);
   const problemSize = data.get('problemSize') || 'medium';
-  const randomMode = data.getAll('randomMode').length ? data.get('randomMode') : 'independent';
-  const allowCommutativity = data.get('allowCommutativity') === 'on';
+  const randomMode = data.getAll('randomMode').length ? data.get('randomMode') : 'deck';
+  const allowCommutativity = data.get('allowCommutativity') !== null;
   const commutativeDuplicates = data.get('commutativeDuplicates') === 'on';
   return { problemsPerPage, problemsPerRow, randomMode, allowCommutativity, commutativeDuplicates, problemSize };
 }

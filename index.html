@@ -20,11 +20,18 @@
         <legend>Global options</legend>
         <div class="field-row">
           <label for="problemsPerPage">Problems per page</label>
-          <input id="problemsPerPage" name="problemsPerPage" type="number" min="1" max="200" step="1" value="40" />
+          <input id="problemsPerPage" name="problemsPerPage" type="number" min="1" max="200" step="1" value="30" />
         </div>
         <div class="field-row">
           <label for="problemsPerRow">Problems per row</label>
-          <input id="problemsPerRow" name="problemsPerRow" type="number" min="1" max="8" step="1" value="4" />
+          <input id="problemsPerRow" name="problemsPerRow" type="number" min="1" max="8" step="1" value="5" />
+        </div>
+
+        <div class="field-row">
+          <label>
+            <input id="allowCommutativity" name="allowCommutativity" type="checkbox" checked />
+            Allow “vice versa” (commutativity for layout)
+          </label>
         </div>
 
         <div class="field-row">
@@ -40,30 +47,23 @@
           <legend>Randomness</legend>
           <div class="field-row">
             <label>
-              <input type="radio" name="randomMode" value="independent" checked />
+              <input type="radio" name="randomMode" value="independent" />
               Independent rolls
             </label>
           </div>
           <div class="field-row">
             <label>
-              <input type="radio" name="randomMode" value="deck" />
+              <input type="radio" name="randomMode" value="deck" checked />
               Exhaustive deck (no repeats until all pairs used)
             </label>
           </div>
           <div class="field-row indent">
             <label>
-              <input id="commDupes" type="checkbox" name="commutativeDuplicates" checked />
+              <input id="commDupes" type="checkbox" name="commutativeDuplicates" />
               Treat commutative pairs as duplicates in deck mode
             </label>
           </div>
         </fieldset>
-
-        <div class="field-row">
-          <label>
-            <input id="allowCommutativity" name="allowCommutativity" type="checkbox" />
-            Allow “vice versa” (commutativity for layout)
-          </label>
-        </div>
       </fieldset>
 
       <fieldset id="configsFieldset">
