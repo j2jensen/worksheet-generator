@@ -76,19 +76,19 @@ function regenerate() {
 }
 
 function addConfig(initial) {
-  const clone = document.importNode(configTemplate.content, true);
-  const fieldset = clone.querySelector('.config');
-  const removeBtn = clone.querySelector('.removeConfigBtn');
-  removeBtn.addEventListener('click', () => {
-    fieldset.remove();
-    regenerate();
-  });
+  // Clone template and append first; then wire listeners on appended node
+  const fragment = configTemplate.content.cloneNode(true);
+  configsHost.appendChild(fragment);
+  const fieldset = configsHost.lastElementChild;
+  const removeBtn = fieldset.querySelector('.removeConfigBtn');
+  if (removeBtn) {
+    removeBtn.addEventListener('click', () => {
+      fieldset.remove();
+      regenerate();
+    });
+  }
 
-  configsHost.appendChild(clone);
-
-  if (initial) {
-    // no-op
-  } else {
+  if (!initial) {
     regenerate();
   }
 }
