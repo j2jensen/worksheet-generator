@@ -76,33 +76,43 @@ body {
   gap: var(--problem-gap);
 }
 
-.problem {
-  display: inline-block;
-  width: 100%;
-}
+.problem { display: block; width: 100%; }
 
 .vertical-problem {
-  display: inline-grid;
-  grid-template-columns: auto 1fr;
+  display: grid;
+  width: 100%;
+  grid-template-columns: 2ch 1fr; /* fixed op column for consistent start of line */
   grid-template-rows: auto auto auto;
   column-gap: 8px;
   row-gap: 2px; /* tighter gap so the line is close to the problem */
   align-items: end;
   font-size: 20px;
+  font-variant-numeric: tabular-nums; /* equal-width digits for visual consistency */
 }
 .vertical-problem .op { grid-column: 1; grid-row: 2; align-self: end; padding-right: 2px; }
 .vertical-problem .top { grid-column: 2; grid-row: 1; text-align: right; }
 .vertical-problem .bottom { grid-column: 2; grid-row: 2; text-align: right; }
-.vertical-problem .answer { grid-column: 1 / span 2; grid-row: 3; height: 40px; border-top: 1px solid #000; }
+.vertical-problem .answer { grid-column: 1 / span 2; grid-row: 3; height: 40px; border-top: 1px solid #000; width: 100%; }
 
 @media print {
+  .pages { display: block; }
   :root {
     --page-width: auto;
     --page-height: auto;
     --page-margin: 0.5in;
   }
   .app-header, .controls { display: none !important; }
-  .page { border: none; padding: var(--page-margin); break-after: page; }
+  .page {
+    border: none;
+    padding: var(--page-margin);
+    break-after: page;
+    page-break-after: always; /* legacy */
+    -webkit-region-break-after: always; /* webkit quirk */
+  }
+  @page {
+    size: letter portrait;
+    margin: 0.5in;
+  }
   body { background: #fff; }
 }
 

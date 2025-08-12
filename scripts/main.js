@@ -138,6 +138,7 @@ function render(pages, problemsPerRow) {
   pagesContainer.innerHTML = '';
   for (const page of pages) {
     const pageEl = el('section', 'page');
+    // Ensure exactly problemsPerPage items per page grid; any extras must go to next page
     const grid = el('div', 'problems-grid');
     grid.style.gridTemplateColumns = `repeat(${problemsPerRow}, 1fr)`;
     for (const prob of page.problems) {
