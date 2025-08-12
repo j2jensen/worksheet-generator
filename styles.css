@@ -81,7 +81,7 @@ body {
 .vertical-problem {
   display: grid;
   width: 100%;
-  grid-template-columns: 2ch 1fr; /* fixed op column for consistent start of line */
+  grid-template-columns: 1.5ch 5ch; /* narrow op col + fixed number col for consistent, compact width */
   grid-template-rows: auto auto auto;
   column-gap: 8px;
   row-gap: 2px; /* tighter gap so the line is close to the problem */
@@ -92,7 +92,7 @@ body {
 .vertical-problem .op { grid-column: 1; grid-row: 2; align-self: end; padding-right: 2px; }
 .vertical-problem .top { grid-column: 2; grid-row: 1; text-align: right; }
 .vertical-problem .bottom { grid-column: 2; grid-row: 2; text-align: right; }
-.vertical-problem .answer { grid-column: 1 / span 2; grid-row: 3; height: 40px; border-top: 1px solid #000; width: 100%; }
+.vertical-problem .answer { grid-column: 2; grid-row: 3; height: 40px; border-top: 1px solid #000; width: 100%; }
 
 @media print {
   .pages { display: block; }
