@@ -107,10 +107,11 @@ function readGlobalOptions() {
   const data = new FormData(form);
   const problemsPerPage = Math.max(1, parseInt(data.get('problemsPerPage')) || 40);
   const problemsPerRow = Math.max(1, parseInt(data.get('problemsPerRow')) || 4);
+  const problemSize = data.get('problemSize') || 'medium';
   const randomMode = data.getAll('randomMode').length ? data.get('randomMode') : 'independent';
   const allowCommutativity = data.get('allowCommutativity') === 'on';
   const commutativeDuplicates = data.get('commutativeDuplicates') === 'on';
-  return { problemsPerPage, problemsPerRow, randomMode, allowCommutativity, commutativeDuplicates };
+  return { problemsPerPage, problemsPerRow, randomMode, allowCommutativity, commutativeDuplicates, problemSize };
 }
 
 function readConfigs() {
@@ -134,7 +135,25 @@ function readConfigs() {
   return out;
 }
 
-function render(pages, problemsPerRow) {
+function applySizeVars(size) {
+  const root = document.documentElement;
+  if (size === 'small') {
+    root.style.setProperty('--problem-font-size', '16px');
+    root.style.setProperty('--answer-height', '28px');
+    root.style.setProperty('--problem-gap', '10px');
+  } else if (size === 'large') {
+    root.style.setProperty('--problem-font-size', '22px');
+    root.style.setProperty('--answer-height', '46px');
+    root.style.setProperty('--problem-gap', '14px');
+  } else {
+    root.style.setProperty('--problem-font-size', '20px');
+    root.style.setProperty('--answer-height', '40px');
+    root.style.setProperty('--problem-gap', '12px');
+  }
+}
+
+function render(pages, problemsPerRow, size) {
+  applySizeVars(size);
   pagesContainer.innerHTML = '';
   for (const page of pages) {
     const pageEl = el('section', 'page');
@@ -161,7 +180,7 @@ function regenerate() {
   const options = readGlobalOptions();
   const configs = readConfigs();
   const pages = generate(configs, options);
-  render(pages, options.problemsPerRow);
+  render(pages, options.problemsPerRow, options.problemSize);
 }
 
 function addConfig(initial) {
